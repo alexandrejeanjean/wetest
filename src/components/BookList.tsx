@@ -2,6 +2,7 @@ import React from 'react'
 import { useQuery } from 'react-query'
 import { getBooks } from '../api/routes'
 import { BookData } from '../models/Book'
+import { Link } from 'react-router-dom'
 
 const BookList = () => {
   const { isLoading, error, data } = useQuery('repoData', getBooks)
@@ -13,7 +14,13 @@ const BookList = () => {
   return (
     <ul>
       {data.map((book: BookData) => {
-        return <li key={book.name + Math.random().toString()}>{book.name}</li>
+        return (
+          <li key={book.isbn}>
+            <Link to={book.name} state={{ book }}>
+              {book.name}
+            </Link>
+          </li>
+        )
       })}
     </ul>
   )

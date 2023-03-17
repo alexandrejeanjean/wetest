@@ -1,7 +1,10 @@
 import React from 'react'
+import { CharacterData } from '../models'
 
-const Character = () => {
-  return <div>Character</div>
+interface CharacterProps {
+  character: CharacterData
 }
 
-export default Character
+export const Character: React.FC<CharacterProps> = ({ character }) => {
+  return <p>{character.name === '' ? character.aliases : character.name}</p>
+}

@@ -2,9 +2,10 @@ import React from 'react'
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { Home } from './components/Home'
-import { NotFound } from './components/404'
-import Character from './components/Character'
+import Book from './components/Book'
+import NotFound from './components/404'
+import BookList from './components/BookList'
+import Home from './components/Home'
 
 const queryClient = new QueryClient()
 
@@ -15,7 +16,8 @@ function App() {
         <Router>
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='character/:characterId' element={<Character />} />
+            <Route path='/books' element={<BookList />} />
+            <Route path='books/:bookName' element={<Book />} />
             <Route path='*' element={<NotFound />} />
           </Routes>
         </Router>

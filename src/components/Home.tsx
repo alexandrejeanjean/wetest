@@ -1,6 +1,15 @@
-import React from 'react'
-import BookList from './BookList'
+import { useNavigate } from 'react-router-dom'
 
-export const Home = () => {
-  return <BookList />
+const Home = () => {
+  let navigate = useNavigate()
+
+  return (
+    <div className='container'>
+      <button className='button' onClick={() => navigate('/books')}>
+        Enter
+      </button>
+    </div>
+  )
 }
+
+export default Home
