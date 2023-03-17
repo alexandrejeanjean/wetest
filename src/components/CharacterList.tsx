@@ -9,7 +9,7 @@ interface CharactersListProps {
 
 const CharacterList: React.FC<CharactersListProps> = ({ characters }) => {
   const charactersQueries = useQueries(
-    characters.slice(1, 3).map((characterEndpoint) => {
+    characters.map((characterEndpoint) => {
       return {
         queryKey: ['character', characterEndpoint],
         queryFn: () => getCharacterInfos(characterEndpoint),
@@ -18,12 +18,12 @@ const CharacterList: React.FC<CharactersListProps> = ({ characters }) => {
   )
 
   return (
-    <ul>
-      {charactersQueries.map((result) => {
+    <ul className='grid grid-cols-1 gap-12 px-4 py-6 md:grid-cols-2 lg:grid-cols-3 overflow-scroll max-h-[600px]'>
+      {charactersQueries.slice(0, 10).map((result) => {
         if (result.isLoading) return <li>loading...</li>
         if (result.error) return <li>An error occured</li>
         return (
-          <li key={result.data.url}>
+          <li className='p-6 bg-white/75 ' key={result.data.url}>
             <Character character={result.data} />
           </li>
         )

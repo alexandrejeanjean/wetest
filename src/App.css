@@ -1,7 +1,18 @@
-.button {
-  width: 200px;
-  height: 80px;
-  border: none;
-  background-color: white;
-  font-size: 2rem;
+.background {
+  height: 100vh;
+  width: 100vw;
+  background-image: url('/public/got.jpeg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
+
+.background-doors {
+  height: 100vh;
+  width: 100vw;
+  background-image: url('/public/doors.webp');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
