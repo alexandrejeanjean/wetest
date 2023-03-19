@@ -3,6 +3,8 @@ import { useQuery } from 'react-query'
 import { getBooks } from '../api/routes'
 import { BookData } from '../models/Book'
 import { Link, useNavigate } from 'react-router-dom'
+import Title from './Title'
+import GoBack from './GoBack'
 
 const BookList = () => {
   const { isLoading, error, data } = useQuery('repoData', getBooks)
@@ -16,17 +18,9 @@ const BookList = () => {
   if (error) return <p>An error has occurred</p>
 
   return (
-    <div className='flex flex-col items-center justify-center overflow-hidden background'>
-      <button
-        className='absolute text-4xl tracking-widest text-white text-opacity-25 uppercase transition duration-500 ease-in-out left-2 top-2 hover:text-opacity-75'
-        onClick={() => navigate(-1)}
-      >
-        &#x2190; Back
-      </button>
-      <h1 className='absolute bottom-0 tracking-widest text-white text-opacity-25 uppercase left-6 text-8xl '>
-        Game of Thrones <br />
-        book list
-      </h1>
+    <section className='flex flex-col items-center justify-center overflow-hidden background'>
+      <GoBack />
+      <Title title='Game of Thrones books' />
       <ul className='grid grid-cols-1 gap-12 px-4 py-6 overflow-scroll max-h-[600px] md:grid-cols-2 lg:grid-cols-4'>
         {data.map((book: BookData) => {
           const releasedDate = new Date(book.released)
@@ -58,7 +52,7 @@ const BookList = () => {
           )
         })}
       </ul>
-    </div>
+    </section>
   )
 }
 
