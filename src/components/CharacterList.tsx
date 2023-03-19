@@ -18,7 +18,7 @@ const CharacterList: React.FC<CharactersListProps> = ({ characters }) => {
   )
 
   const resultRender = () => {
-    return charactersQueries.map((result) => {
+    return charactersQueries.slice(0, 20).map((result) => {
       if (result.isLoading)
         return (
           <li key={'loading-' + Math.random()} className='text-white'>

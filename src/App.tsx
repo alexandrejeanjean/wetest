@@ -1,4 +1,3 @@
-import React from 'react'
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from 'react-query'
@@ -7,7 +6,13 @@ import NotFound from './components/404'
 import BookList from './components/BookList'
 import Home from './components/Home'
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      suspense: true,
+    },
+  },
+})
 
 function App() {
   return (
