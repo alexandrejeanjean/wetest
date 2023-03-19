@@ -17,18 +17,31 @@ const CharacterList: React.FC<CharactersListProps> = ({ characters }) => {
     })
   )
 
-  return (
-    <ul className='grid grid-cols-1 gap-12 px-4 py-6 md:grid-cols-2 lg:grid-cols-3 overflow-scroll max-h-[600px]'>
-      {charactersQueries.slice(0, 10).map((result) => {
-        if (result.isLoading) return <li className='text-white'>loading...</li>
-        if (result.error)
-          return <li className='text-white'>An error occured</li>
+  const resultRender = () => {
+    return charactersQueries.map((result) => {
+      if (result.isLoading)
         return (
-          <li className='p-6 bg-white/75' key={result.data.url}>
-            <Character character={result.data} />
+          <li key={'loading-' + Math.random()} className='text-white'>
+            Loading...
           </li>
         )
-      })}
+      if (result.error)
+        return (
+          <li key={'error-' + Math.random()} className='text-white'>
+            An error occured
+          </li>
+        )
+      return (
+        <li className='p-6 bg-white/75' key={result.data.url}>
+          <Character character={result.data} />
+        </li>
+      )
+    })
+  }
+
+  return (
+    <ul className='grid grid-cols-1 gap-12 px-4 py-6 md:grid-cols-2 lg:grid-cols-3 overflow-scroll max-h-[600px]'>
+      {resultRender()}
     </ul>
   )
 }

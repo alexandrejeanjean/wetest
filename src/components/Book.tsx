@@ -2,8 +2,7 @@ import React from 'react'
 import { useLocation } from 'react-router-dom'
 import NotFound from './404'
 import CharacterList from './CharacterList'
-import GoBack from './GoBack'
-import Title from './Title'
+import PageTemplate from './PageTemplate'
 
 const Book = () => {
   let { state } = useLocation()
@@ -13,11 +12,9 @@ const Book = () => {
   let { book } = state
 
   return (
-    <div className='flex flex-col items-center justify-center background'>
-      <GoBack />
-      <Title title={book.name + ' characters'} />
+    <PageTemplate title={book.name + ' characters'}>
       <CharacterList characters={book.characters} />
-    </div>
+    </PageTemplate>
   )
 }
 
